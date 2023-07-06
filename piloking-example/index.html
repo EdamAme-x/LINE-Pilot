@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIFFユニマク</title>
+    
+</head>
+<body>
+    <div class="container mt-2">
+        <h1>LIFFユニマク悪用厳禁</h1>
+        <p>user:<span id="name">name</span></p>
+        <p>type:<span id="typ">type</span></p>
+        <p>error:<span id="err"></span></p>
+        <p><a href="unic.html">連投する</a></p>
+        <input type="button" value="再読込" onclick=location.reload() />
+        <input type="button" value="改行砲" onclick=sendMessage() />
+    </div>
+    <script src='https://static.line-scdn.net/liff/edge/2/sdk.js'></script>
+    <script>
+        const name = '名前が不明です';
+        const liffId='1661226722-beANnaeG';
+        liff.init({
+            liffId: liffId // Use own liffId
+        }).then(() => {
+            getProfile();
+        }).catch((err) => {
+            alert(err);
+        }).then(() => {
+            gettype();
+        }).catch((err) => {
+            alert(err);
+        })
+
+        function getProfile(){
+            liff.getProfile()
+            .then((profile) => {
+                const name = profile.displayName;
+                const displayName = document.getElementById('name');
+                displayName.innerHTML= name;
+            })
+            .catch((err) => {
+                alert(err);
+            });
+        }
+
+        function sendMessage(){
+            liff.sendMessages([
+                {
+                type: 'text',
+                text: "l\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nl",
+                },
+            ]).then(() => {
+                document.getElementById('err').innerHTML= ""
+            })
+            .catch((err) => {
+                document.getElementById('err').innerHTML= err
+            });
+        }
+      function gettype(){
+            const context = liff.getContext();
+        
+            document.getElementById('typ').innerHTML= context.type
+            
+      }
+    </script>
+</body>
+</html>
